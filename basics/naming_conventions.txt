@@ -1,0 +1,42 @@
+package main
+
+type EmployerGoogle struct {
+	FirstName string
+	LastName string
+	Age int
+}
+
+type EmployerApple struct {
+	FirstName string
+	LastName string
+	Age int
+}
+
+func main() {
+	// PascalCase: Used for naming types, functions, and methods.
+	//Example: `MyFunction`, `UserType`, `CalculateTotal`
+	// Such as Structs, interfaces, enum, and exported functions.
+
+
+	// snake_case: Used for naming variables and package names.
+	// Example: `my_variable`, `user_data`, `calculate_total`
+	// Such as variables, and unexported functions.
+
+
+	// UPPERCASE: Used for constants.
+	// Example: `MAX_VALUE`, `DEFAULT_TIMEOUT`, `API_KEY`
+	// Such as constants, global variables, and configuration settings.
+
+
+	// mixedCase: Used for naming methods and functions that are not exported.
+	// Example: `calculateTotal`, `getUserData`, `processInput`
+	// Such as private methods, unexported functions, and internal logic.
+
+
+	// For package names, it is common to use lowercase letters and without underscores.
+
+	constant MAXRETRIES = 5
+	var employeeID = 1001
+	fmt.Println("EmployeeID: ", employeeID)
+
+}

@@ -1,0 +1,37 @@
+package main
+
+import "fmt"
+
+// Why error?
+// Because ":=" can only be used inside a function
+// middleName := "Cannn" 
+// Solution
+var middleName = "Cannn"
+
+func main(){
+	// var age int 
+	//If initialize the value then noneed put the type of variable
+	// var name string = "John" 
+	// var name2 = "Ray" 
+	//Both correct
+
+	// count := 10 
+	// lastName := "Yojjeong" 
+	middleName := "Yojjeong" 
+
+	fmt.Println(middleName)
+	// Default values
+	//Numberic types: 0
+	//String: ""
+	//Boolean: false
+	// Pointers, slices, maps, functions, and structs: nil 
+
+	// ------ Scope 
+
+	// fmt.Println(firstName) 
+
+}
+func printName() {
+	firstName := "May"
+	fmt.Println(firstName)
+}
