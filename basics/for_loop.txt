@@ -1,0 +1,52 @@
+package main
+
+import "fmt"
+func main() {
+	//Simple Iteration over a range of numbers
+	for i:=1; i<=5; i++ {
+		fmt.Println("Iteration:", i)
+	}
+
+	// Interate over collection
+	numbers := []int{1, 2, 3, 4, 5, 6}
+	for index, value  := range numbers {
+		fmt.Printf("Index: %d, Value: %d\n", index, value)
+	}
+	//%d is used for formating integers in base-10
+	//%v is used for formatting any value in a default format
+
+	// Break and Continue
+	// Example below only shgows odd numbers from 1 to 7 (Including 7)
+	for x:=1; x<=10; x++ {
+		if x % 2 == 0 {
+			continue // Skip the rest of the statements in loop but continue to the next iteration
+		}
+		fmt.Println("Odd Number:", x)
+		if x == 7 {
+			break // Exit the loop when x is 7
+		}
+	}
+
+	// Nested Loops
+	rows := 5
+	//Outer Loop
+	for y:=1; y<=rows; y++ {
+		// Inner loop for spaces before stars
+		for z:=1; z<=rows-y; z++ {
+			fmt.Print(" ") // Print space without newline
+		}
+		// Inner loop for stars
+		for w:=1; w<=2*y-1; w++ {
+			fmt.Print("*") // Print star without newline
+		}
+		fmt.Println() // Move to the next line after each row
+	}
+
+	// Directly iterating over a range of numbers
+	for g := range 10 {
+		fmt.Println(10-g)
+	}
+	fmt.Println("We have a lift off!")
+
+	
+}
