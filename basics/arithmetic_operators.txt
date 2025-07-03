@@ -1,0 +1,62 @@
+package main
+
+import (
+	"fmt"
+	"math"
+)
+
+func main() {
+	// Varaible declaration and initialization
+	var a, b int = 10, 3
+	var result int
+
+	// Addition
+	result = a + b
+	fmt.Println("Addition:", result)
+
+	// Subtraction
+	result = a - b
+	fmt.Println("Subtraction:", result)
+
+	// Multiplication
+	result = a * b
+	fmt.Println("Multiplication:", result)
+
+	// Division
+	result = a / b
+	fmt.Println("Division:", result)
+
+	// Modulus 
+	result = a % b
+	fmt.Println("Modulus:", result)
+
+	// if want the result more accurate, use float64, and any of the operatonds need to have decimal value
+	const p float64 = 22 / 7
+	const q float64 = 22.0 / 7
+	fmt.Println("Accurate Division:", p)
+	fmt.Println("Accurate Division with float64:", q)
+
+	// Overflow means when the result of an operation exceeds the maximum value that can be stored in the variable type.
+	// For example, if you try to add two large integers that exceed the maximum value for
+	// Overflow with signed integers
+	var maxInt int64 = 9223372036854775807 // Maximum value for int64
+	fmt.Println("Max Int64:", maxInt)
+	maxInt += 1 // This will cause an overflow
+	fmt.Println("After Overflow:", maxInt) // This will wrap around to the minimum value for int64
+	// Overflow with unsigned integers
+	var maxUint uint64 = 18446744073709551615 // Maximum value for uint64
+	fmt.Println("Max Uint64:", maxUint)
+	maxUint += 1 // This will cause an overflow
+	fmt.Println("After Overflow:", maxUint) // This will wrap around to 0
+
+	// Underflow means when the result of an operation is less than the minimum value that can be stored in the variable type.
+	// the int type, it will overflow and wrap around to a negative value.
+	// Underflow with floating point numbers
+	// For example, if you try to divide a small float64 value by a large float64 value, it can result in a value that is too small to be represented accurately.
+	var smallFloat float64 = 1.0e-323 // Smallest positive float64 value
+	fmt.Println("Smallest Float64:", smallFloat)
+	smallFloat = smallFloat / math.MaxFloat64	// This will cause an underflow
+	fmt.Println("After Underflow:", smallFloat) // This will be the smallest value that almmost equal to 0, but  it is not zero
+	
+
+}
