@@ -1,0 +1,26 @@
+package main
+import "fmt"
+
+func main() {
+	// Using a for loop as a while loop with break condition
+	// sum := 0
+	// for {
+	// 	sum += 10
+	// 	fmt.Println("Sum:", sum)
+	// 	if sum >= 50 {
+	// 		break // Exit the loop when sum reaches or exceeds 50
+	// 	}
+		// i++ // Increment i to avoid infinite loop
+	// }
+
+	// Using a for loop as a while loop with a continue condition
+	num := 1
+	for num <= 10 {
+		if num%2 == 0 {
+			num++
+			continue
+		}
+		fmt.Println("Odd number:", num)
+		num++ // Increment num to avoid infinite loop
+	}
+}
