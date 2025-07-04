@@ -1,0 +1,41 @@
+package main
+
+import (
+	"fmt"
+	"math/rand"
+	"time"
+)
+
+func main() {
+	// By seeding the current time, we can create a new random number generator
+	// This ensures that each time the program runs, it generates a different sequence of random numbers
+	// This is important for the guessing game to be fair and unpredictable
+	source := rand.NewSource(time.Now().UnixNano())
+	random := rand.New(source)
+
+	// Generate a random number between 1 and 100
+	target := random.Intn(100) + 1
+
+	// Welcome message
+	fmt.Println("Welcome to the Guessing Game!")
+	fmt.Println("I have selected a number between 1 and 100. Can you guess what it is?")
+
+	// Logic of the game
+	var guess int
+	// Using for loop as while loop to keep asking for input until the user guesses correctly
+	for {
+		fmt.Println("Please enter your guess:")
+		fmt.Scanln(&guess)
+
+		// Check if the guess is correct
+		if guess == target {
+			fmt.Println("Congratulations! You've guessed the number correctly!")
+			break
+		}else if guess < target {
+			fmt.Println("Your guess is too low. Try again!")
+		} else {
+			fmt.Println("Your guess is too high. Try again!")
+		}
+
+	}
+}
