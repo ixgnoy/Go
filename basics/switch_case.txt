@@ -1,0 +1,88 @@
+package main
+
+import "fmt"
+
+func main() {
+	// Switch statement in Go is (Switch Case default) (Fallthrough)
+	// switch expression {
+	// case value1:
+	// 	// code block for value1
+	// case value2:
+	// 	// code block for value2
+	// case value3:
+	// 	// code block for value3
+	// default:
+	// 	// code block for default case}
+
+	// In Go, if the case met, it will execute the code block for that case and then exit the switch statement.
+	// Fallthrough allows the execution to continue to the next case
+	// Example below
+	// fruit := "Pineapple"
+	// switch fruit {
+	// case "apple":
+	// 	fmt.Println("This is an apple")
+
+	// case "banana":
+	// 	fmt.Println("This is a banana")
+
+	// case "orange":
+	// 	fmt.Println("This is an orange")
+	// default:
+	// 	fmt.Println("This is a fruit that is not apple, banana or orange")
+	// }
+
+	// // Multiple Conditions in a case
+	// fmt.Println("----- Multiple Conditions -----")
+	// day := "Tuesday"
+	// switch day {
+	// case "Monday", "Tuesday", "Wednesday", "Thursday", "Friday":
+	// 	fmt.Println("It's a weekday")
+	// case "Saturday", "Sunday":
+	// 	fmt.Println("It's a weekend")
+	// default:
+	// 	fmt.Println("Invalid day")
+	// }
+
+	// number := 15
+	// switch {
+	// case number < 10:
+	// 	fmt.Println("Number is less than 10")
+	// case number >= 10 && number < 20:
+	// 	fmt.Println("Number is between 10 and 19")
+	// default:
+	// 	fmt.Println("Number is 20 or greater")
+	// }
+
+	// // Fallthorrugh example
+	// fmt.Println("----- Fallthrough Example -----")
+	// num := 2
+	// switch {
+	// case num > 1:
+	// 	fmt.Println("Number is greater than 1")
+	// 	fallthrough // This will cause the next case to execute
+	// case num == 2:
+	// 	fmt.Println("Number is equal to 2")
+	// default:
+	// 	fmt.Println("Number is less than or equal to 1")
+
+	// }
+	checkType(42)
+	checkType(3.14)
+	checkType("Hello, Go!")
+	checkType(true)
+
+	
+}
+//Any type switch statement in Go can be used to check the type of an interface{} value.
+func checkType(x interface{}) {
+		switch x.(type) {
+		case int:
+			fmt.Println("x is an int")
+		case float64:
+			fmt.Println("x is a float64")
+		case string:
+			fmt.Println("x is a string")
+		default:
+			fmt.Println("Unknown type")
+		}
+}
