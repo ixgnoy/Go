@@ -1,0 +1,51 @@
+package main
+
+import "fmt"
+
+func main() {
+	// Format to write function will be:
+	// func <name>(parameters list) returnType {
+	// code block
+	// return <return value>
+	// }
+
+	// Example of calling the add function
+	// sum := add(1, 2)
+	// fmt.Println(add(2, 3))
+
+	// // Anonymous Function
+	// // This is a function without a name, defined and called immediately
+	// greet := func () {
+	// 	fmt.Println("This is an anonymous function")
+	// }
+	// greet() // Calling the anonymous function
+
+	// operation := add
+	// result := operation(5, 7) // Assigning the add function to a variable and calling it
+	// fmt.Println("Result of operation:", result) // Output the result of the operation
+
+	// Passing a function as an argument
+	result := applyOperation(5, 3, add)
+	fmt.Println("Result of applyOperation:", result) // Output the result of the operation
+
+	// Returning and using a function
+	multiplyBy2 := createMultiplier(2)
+	fmt.Println("Result of createMultiplier:", multiplyBy2(5)) // Output: 10
+}
+
+// Example Function
+func add(a, b int) int { // This function takes two integers and returns their sum in integers
+	return a + b
+}
+
+// Function that takes a function as a argument
+func applyOperation(x int, y int, operation func(int, int) int) int {
+	return operation(x, y)
+}
+
+// Function that returns a function
+func createMultiplier(factor int) func(int) int {
+	return func(x int) int {
+		return x * factor
+	}
+}
