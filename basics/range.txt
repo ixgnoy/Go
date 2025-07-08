@@ -1,0 +1,15 @@
+package main
+
+import "fmt"
+
+func main() {
+	message := "Hello, World!"
+
+	for i, v := range message {
+		// Rune is the type for a Unicode code point
+		// Unicode chracters is universal standard that covers characters from almost every language in the world.
+		fmt.Printf("Index: %d, Rune: %c\n", i, v)
+		// The %c verb formats the rune as a character
+	}
+
+}
