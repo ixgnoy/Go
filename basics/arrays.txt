@@ -1,0 +1,82 @@
+package main
+
+import "fmt"
+
+func main() {
+	// var arrayName [size]elementType
+	// var numbers [5]int // An array of 5 integers
+	// fmt.Println(numbers)
+
+	// // Initializing the last element of the array
+	// numbers[4] = 20
+	// fmt.Println(numbers)
+
+	// // Initializing the first element of the array
+	// numbers[0] = 9
+	// fmt.Println(numbers)
+
+	// fruits := [4]string{"Apple", "Banana", "Cherry", "Watermelon"}
+	// fmt.Println("Fruits Array:", fruits)
+
+	// // Print the third element of the fruits array
+	// fmt.Println("Third Fruit:", fruits[2])
+
+	// // Let's see whether the original array will change if we modify the copied array
+	// originalArray := [3]int{1,2,3}
+	// copiedArray := originalArray // This creates a copy of the array
+	// // Change the value of the first element of copied array
+	// copiedArray[0] = 10
+	// fmt.Println("Original Array:", originalArray)
+	// fmt.Println("Copied Array:", copiedArray)
+
+	// // Iterate the array using a for loop
+	// for i := 0; i< len(numbers); i++ {
+	// 	fmt.Println("Element at index,", i, ":", numbers[i])
+	// }
+
+	// // Iterate the array using a for range loop
+	// // for i, v := range numbers {
+	// // 	fmt.Printf("Index: %d, Value: %d\n", i, v)
+	// // }
+	// //Or you can do like this (Using Blank Identifier)
+	// for _, v := range numbers {
+	// 	fmt.Printf("Value: %d\n", v)
+	// }
+	// // Underscore (_) is used to ignore the index value in the for range loop
+	// // Because if we must use anything we declare it as a variable, but if we don't need it, we can use the blank identifier (_)
+
+
+	// // Print the length of the array
+	// fmt.Println("Length of the numbers array:", len(numbers))
+
+	// // Comparing arrays
+	// array1 := [3]int{1,2,3}
+	// array2 := [3]int{10,2,3}
+
+	// fmt.Println("Array 1 is equal to Array 2:", array1 == array2)
+
+	// // 2 dimensional arrays with 3x3 matrix
+	// var matrix [3][3]int = [3][3]int {
+	// 	{1, 2, 3},
+	// 	{4, 5, 6},
+	// 	{7, 8, 9},
+	// }
+	// fmt.Println(matrix)
+
+	// How Pointer works with Arrays
+	// copiedArray isn't a real copy but a pointer that directly refer to the originalArray
+	originalArray := [3]int{1,2,3}
+	// It's a pointer that can hold the memory address of a 3-element integer array
+	var copiedArray *[3]int
+
+	// `&` opeartor is used to get the memory address of the originalArray
+	// So, copiedArray now points drectly to the originalArray
+	copiedArray = &originalArray
+	// Change the value of the first element of copied array
+	copiedArray[0] = 100
+	fmt.Println("Original Array:", originalArray)
+	fmt.Println("Copied Array:", *copiedArray)
+	// Both statements will print the same value
+	// Because there's only one array in memory, and copiedArray is just a pointer to that array
+
+}
