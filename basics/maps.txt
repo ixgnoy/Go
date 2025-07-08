@@ -1,0 +1,101 @@
+package main
+
+import (
+	"fmt"
+	"maps"
+)
+
+func main() {
+	// Format:
+	// Method 1: var mapVariable map[keyType]valueType
+	// Method 2: mapVariable = make(mapkeyType]valueType)
+	// Method 3: Using a Map Literal
+	// mapVariable = map[keyType]valueType {
+	// 	key1: value1,
+	// 	key2: value2
+	// }
+
+	myMap := make(map[string]int)
+	fmt.Println(myMap)
+
+	myMap["key1"] = 9
+	myMap["code"] = 17
+	fmt.Println(myMap)
+	fmt.Println(myMap["key1"])
+	fmt.Println(myMap["key"]) // This will return 0 since "key" does not exist in the map
+	myMap["key2"] = 99
+	fmt.Println(myMap)
+	myMap["key2"] = 6666
+	fmt.Println(myMap)
+
+	// Delete a key
+	delete(myMap, "key1")
+	fmt.Println(myMap)
+	// Check if a key exists
+	_, exists := myMap["key1"]
+	fmt.Println("key1 exists:", exists)
+	_, existed := myMap["key2"]
+	fmt.Println("key2 exists:", existed)
+
+	myMap["key3"] = 100
+	myMap["key4"] = 200
+	myMap["key5"] = 300
+	fmt.Println("Final map:", myMap)
+
+	// Clear the map
+	// clear(myMap)
+	// fmt.Println("Map after clearing:", myMap)
+
+	// value, unknowvalue := myMap["key1"]
+	// fmt.Println(value)
+	// fmt.Println("Key1 exists:", unknowvalue)
+	// When we don't care about the value of the key, we can use the blank identifier
+	_, ok := myMap["key3"]
+	if ok {
+		fmt.Println("Key3 exists in the map")
+	} else {
+		fmt.Println("Key3 does not exist in the map")
+	}
+
+	myMap2 := map[string]int{"a": 1, "b": 2}
+	fmt.Println("Map 2:", myMap2)
+	if maps.Equal(myMap, myMap2) {
+		fmt.Println("Maps are equal")
+	} else {
+		fmt.Println("Maps are not equal")
+	}
+
+	// Iterating over a map
+	// for k, v := range myMap2 {
+	// 	fmt.Println("Key:", k, "Value:", v)
+	// }
+	// When we don't care about the value, we can use the blank identifier
+	for _, v := range myMap2 {
+		fmt.Println("Value:", v)
+	}
+
+	// Check if it is nil
+	var myMap4 map[string]string
+	if myMap4 == nil { // This will be true since myMap4 is not initialized
+		fmt.Println("myMap4 is nil")
+	} else {
+		fmt.Println("myMap4 is not nil")
+	}
+	val := myMap4["key"]
+	fmt.Println("Value for 'key' in myMap4:", val) // This will return an empty string since myMap4 is nil
+
+	// WE CANNOT assign a value to a key in a nil map, it will cause a panic
+	// myMap4["key"] = "value"
+	// fmt.Println(myMap4) // This will cause a panic since myMap4 is nil
+	myMap4 = make(map[string]string)
+	myMap4["key"] = "value"
+	fmt.Println("myMap4 after initialization:", myMap4)
+
+	// check lenth of a map
+	fmt.Println("Length of myMap4:", len(myMap))
+
+	// Make a map embedded in a map
+	myMap5 := make(map[string]map[string]string)
+	myMap5["map1"] = myMap4
+	fmt.Println("Map 5:", myMap5)
+}
