@@ -1,0 +1,73 @@
+package main
+
+import (
+	"fmt"
+	"slices"
+)
+
+func main() {
+	// Slices are dynamically-sized, flexible views into the elements of an array.
+	// var sliceName[]ElementType
+	// var numbers []int
+	// var numbers1 = []int{1, 2, 3}
+
+	// numbers2 := []int{8, 9, 7}
+
+	// `make` function used to create slices, maps, and channels.
+	// make([]ElementType, length, capacity)
+	// slice := make([]int, 5) // Creates a slice of int with length 5 and capacity 5
+	a := [5]int{1, 2, 3, 4, 5}
+	slice2 := a[1:4] // Creates a slice from the array `a` starting at index 1 and ending at index 4 (exclusive)
+	fmt.Println(slice2)
+
+	// Slices can be resized using the `append` function
+	slice2 = append(slice2, 6, 7, 8)
+	fmt.Println("Slice 2:", slice2)
+
+	// Copy the slice
+	sliceCopy := make([]int, len(slice2))
+	copy(sliceCopy, slice2)
+	fmt.Println("The copy of Slice 2:", sliceCopy)
+
+	// Make a nil slice
+	// var nilSlice []int
+	for i, v := range slice2 {
+		fmt.Println(i, v)
+	}
+
+	// Access elements in a slice of index 3
+	fmt.Println("Element at index 3 of slice2:", slice2[3])
+	// Update the element at index 3 of the slice
+	// slice2[3] = 67
+	// fmt.Println("Element at index 3 of slice2 after update:", slice2[3])
+
+	if slices.Equal(slice2, sliceCopy) {
+		fmt.Println("Slice 2 and Slice Copy are equal")
+	}
+
+	// Create a multidimensional slice (Array)
+	// Expected output: // Two-dimensional slice: [[0] [1 2] [2 3 4]]
+	twoD := make([][]int, 3)
+	for i :=0; i<3; i++ {
+		innerLen := i + 1 
+		twoD[i] = make([]int, innerLen)
+		for j:=0; j<innerLen; j++ {
+			twoD[i][j] = i + j
+			fmt.Printf("Addving value %d in outer index %d and inner index %d\n", i+j, i, j)
+		}
+	}
+	fmt.Println("Two-dimensional slice:", twoD)
+
+	// Slice[low:high] - Slicing a slice
+	slice3 := slice2[2:4]
+	fmt.Println("Slice 3 (from slice2):", slice3)
+
+	fmt.Println("Length of slice3:", len(slice3))
+	fmt.Println("Capacity of slice3:", cap(slice3))
+	// Why the capacity is 6?
+	// The capacity of slice3 is 6 because it is a sub-slice of slice2, which has a capacity of 8 (the original slice2 had 8 elements after appending).
+	// cop(new) = cop(original) - low (Thtat's why 6)
+
+
+
+}
