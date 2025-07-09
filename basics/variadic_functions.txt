@@ -1,0 +1,47 @@
+package main
+
+import "fmt"
+
+func main() {
+	// ... Ellipsis
+	// The ellipsis (...) is used in Go to indicate a variadic function, which can take a variable number of arguments.
+	// Now the function can accept zero or more arguments of that type
+	// Good point: It handles an unknown number of inputs
+	// Example:
+	// func functionName(param1 type1, param2 type2, param3 ...type1) {
+	// function body
+	// }
+
+	// Example of a variadic function that prints total numbers
+	// fmt.Println("Sum of 1, 2, 3, 4, 5:", sum(1, 2, 3, 4, 5))
+	// statement, total := sum("Total of 1 to 5 is:", 1, 2, 3, 4, 5)
+	// fmt.Println(statement, total)
+	sequence, total := sum(1, 20, 40, 50, 60)
+	fmt.Println("Sequence:", sequence, "Total:", total)
+	sequence2, total2 := sum(2, 100, 200, 300)
+	fmt.Println("Sequence:", sequence2, "Total:", total2)
+
+	numbers := []int{1,2,3,4,5}
+	sequence3, total3 := sum(3, numbers...)
+	fmt.Println("Sequence:", sequence3, "Total:", total3)
+
+}
+
+// Go automatically creates a slice for you, Time: O(n), Space: O(n)
+// Example of a variadic function that sums integers
+// func sum(nums ...int) int {
+// 	total := 0
+// 	for _, v := range nums {
+// 		total += v
+// 	}
+// 	return total
+// }
+
+// Try to play around with multiple parameters
+func sum(sequence int, nums ...int) (int, int) {
+	total := 0
+	for _, v := range nums {
+		total += v
+	}
+	return sequence, total
+}
