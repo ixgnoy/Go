@@ -1,0 +1,24 @@
+package main
+
+import "fmt"
+
+func main() {
+	// Defer is used to ensure that a function call is performed later in a program's execution, usually for cleanup purposes.
+	// It is often used to close files, release resources, or unlock mutexes.
+
+	// LIFO Order
+	// If you have multiple `defer` statement, they will be executed in Last In, First Out (LIFO) order.
+	// The last `defer` you write will be the first one to be executed.
+
+	process(10)
+}
+
+func process(i int) {
+	defer fmt.Println("Deferred statement executed with value:", i)
+	defer fmt.Println("First Deferred statement executed")
+	defer fmt.Println("Second Deferred statement executed")
+	defer fmt.Println("Third Deferred statement executed")
+	fmt.Println("Processing...")
+	i++
+	fmt.Println("Processing complete with value:", i)
+}
