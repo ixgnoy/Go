@@ -1,0 +1,47 @@
+package main
+
+import (
+	"errors"
+	"fmt"
+)
+
+func main() {
+	// func functionName(parameter1 type1, parameter2 type2) (returnType1, returnType2) {
+	// Code Block
+	// Return returnValue1, returnValue2
+	// }
+	q, r := divide(10, 3)
+	// fmt.Printf("Quotient: %d, Remainder: %d\n", q, r)
+	fmt.Printf("Quotient: %v, Remainder: %v\n", q, r)
+
+	result, err := compare(8, 8)
+	if err != nil {
+		fmt.Println("Error:", err)
+	} else {
+		fmt.Println("Comparison Result:", result)
+	}
+}
+
+// Example function that divides two integers and returns the quotient and remainder
+// func divide(a int, b int) (int, int) {
+// 	quotient := a / b
+// 	remainder := a % b
+// 	return quotient, remainder
+// }
+// If  you have defined the variable name with this format: func functionName(prameterName type, parameterName2, type2) (returnType1, returnType2) {...}
+func divide(a int, b int) (quotient int, remainder int) {
+	quotient = a / b
+	remainder = a % b
+	return
+}
+
+// Function to compare two integers
+func compare(a, b int) (string, error) {
+	if a > b {
+		return "a is greater than b", nil
+	} else if a < b {
+		return "a is less than b", nil
+	} else {
+		return "", errors.New("Unable to compare which is greater")
+	}
+}
