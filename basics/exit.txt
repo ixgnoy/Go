@@ -1,0 +1,32 @@
+package main
+
+import (
+	"fmt"
+	"os"
+)
+
+func main() {
+	// Try to implement defer Print statement
+	defer fmt.Println("Deferred Statement Executed")
+	// Exit is used to exit the program with a specific exit code.
+	fmt.Println("Starting the main function...")
+
+	// Exit the program with status code of 1
+	// This will terminate the program immediately without running deferred functions.
+	os.Exit(1)
+
+	// This line of code will never be executed because os.Exit terminates the program.
+	fmt.Println("End of Main Function")
+
+}
+
+// Notes for Exit
+// Practical Use Cases of Exit:
+// 1. Error Handling: When a critical error occurs, you can use os.Exit to terminate the program immediately.
+// 2. Termination Conditions: If certain conditions are met (e.g., invalid input, missing configuration), you can exit the program gracefully.
+// 3. Exit Codes: You can use different exit codes to indicate success (0) or failure (non-zero) of the program execution.
+
+// Best Practices:
+// 1. Use os.Exit only when necessary, as it skips deferred function calls.
+// 2. Ensure that any necessary cleanup is done before calling os.Exit, as deferred functions will not run.
+// 3. Use meaningful exit codes to indicate the reason for termination (e.g., 1 for general errors, 2 for invalid input).
