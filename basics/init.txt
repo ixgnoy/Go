@@ -1,0 +1,35 @@
+package main
+
+import "fmt"
+
+func init() {
+	fmt.Println("Initializing application1...")
+}
+func init() {
+	fmt.Println("Initializing application2...")
+}
+func init() {
+	fmt.Println("Initializing application3...")
+}
+
+func main() {
+	// Init us used to initialize the application.
+	// It is called when the application starts.
+
+	fmt.Println("Application started successfully.")
+
+}
+
+// Notes for Init:
+// Practical Use Cases:
+// 1. Setting up configuration: Loading configuration files or environment variables.
+// 2. Database connections: Establishing connections to databases or external services.
+// 3. Logging setup: Configuring logging frameworks or output formats.
+// 4. Dependency injection: Initializing dependencies or services that the application will use.
+// 5. Registering routes: Setting up web server routes or endpoints.
+
+// Best Practices:
+// 1. Keep init functions short: Avoid complex logic in init functions to maintain readability.
+// 2. Avoid side effects: Minimize side effects in init functions to prevent unexpected behavior.
+// 3. Use init for setup only: Avoid using init for business logic or application flow control.
+// 4. Document init functions: Clearly document what each init function does for maintainability.
