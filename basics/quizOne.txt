@@ -1,0 +1,25 @@
+Q1. Why does Go require a runtime even tough it compiles to machine code?
+Because the Go runtime manages essential features like garbage collection and concurrency.
+[ I'm sure you guys know that Go is a compiled language, but it still need a runtime to handle critical aspects of program execution. The Go runtime is responsible for automatic Garbage Collection (GC), 
+ Goroutine scheduling for concurrency, memory management, and other essential runtime support functions. (Which make us as programmers' life ez hahahhaha) 
+ Unlike Interpreted language (like Python, which needs an intepreter to run source code), Go compiles directly to machine code. Howeve, the compiled Go program still depends on the runtime for efficient execution.]
+
+ Q2. How does Go Optimize imported packages to reduce the final executable size?
+ By using tree shaking to remove unused functions and definitions from imported packages during compilation.
+ [ Go's compiler and linker perform optimizations similar to tree shaking, which means that even though an entire package is imported,
+ Only the parts of the package that are actually used in the code contribute to the final executable size. Those unused functions, types, 
+ and other definitions from the imported package are discarded during the compilation process.]
+
+Q3. The correct statement of `Go Map`.
+The zero value of a map is nil, meaning it must be initialized before use. ( A nil map will cause a runtime panic if you attempt to add elements to it)
+(Wrong) Maps in Go have a fixed size and require preallocation of capacity.
+(Wrong) Iterating over a map in Go gurantees elements will be returned in insertion order.  (Map is Unordered de)
+(Wrong) Deleting a key from a map in Go shifts remaining elements to maintain order. (Map in Go is unordered)
+
+Q4. What is a key advantage of using multiple return values in Go?
+It enables efficient error handling by returning both results and error values.
+
+Q5. What is a key rule when defining a variadic function in Go?
+A variadic parameter must always be the alst parameter in the function.
+(This ensures that Go can properly differentiate between regular parameters and the variadic list.)
+[ I tried before use it at the first parameter, it will return errors! ]
