@@ -1,0 +1,34 @@
+package main
+
+import "fmt"
+
+func main() {
+	// Recover from panic
+	process()
+	fmt.Println("Process returned from process successfully")
+}
+
+func process() {
+	defer func() {
+		if r := recover(); r != nil {
+			fmt.Println("Recovered from panic:", r)
+		}
+	}()
+
+	// Code that may cause a panic
+	fmt.Println("Start processing")
+	panic("Something went wrong!")
+	// Unreachable code
+}
+
+// Notes:
+// Practical Use Cases of Recover:
+// 1. Graceful Shutdown: In web servers, recover can be used to handle panics and allow the server to continue running.
+// 2. Logging: It can be used to log errors without crashing the application.
+// 3. Resource Cleanup: Ensures that resources are cleaned up properly even if a panic occurs.
+
+// Best Practices:
+// 1. Use recover only in deferred functions to catch panics.
+// 2. Avoid using recover to handle expected errors; use it for unexpected situations.
+// 3. Always log the panic information for debugging purposes.
+// 4. Avoid Overuse: Use recover sparingly, as it can make code harder to understand and maintain.
