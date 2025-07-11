@@ -1,0 +1,35 @@
+package main
+
+import "fmt"
+
+func main() {
+	// var ptr *int
+	var ptr *int
+	var a int = 10
+	// Now the pointer is refering to the address of a
+	ptr = &a
+
+	fmt.Println(a)
+	fmt.Println(ptr)
+	fmt.Println(*ptr) // Dereferencing the pointer to get the value at that address
+
+
+	// I the pointer is nil
+	// It will be zero value/ or not initialized
+	// if ptr == nil  {
+	// 	fmt.Println("Pointer is nil")
+	// } else {
+	// 	fmt.Println("Pointer is not nil")
+	// }
+
+	modifyValue(ptr)
+	fmt.Println(a)
+
+}
+
+// Make a function that takes a pointer to an int and modifies the value at that address
+func modifyValue(ptr *int) {
+	// Dereferencing the pointer to modify the value at that address
+	// So output will be value + 1
+	*ptr++
+}
