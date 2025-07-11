@@ -1,0 +1,68 @@
+package main
+
+import "fmt"
+
+// Primary reason to use closures are to create stateful function and to pass context to callbacks.
+// Key Use Cases:
+// 1. Encapsulating state: Closures can maintain state across function calls.
+// 2. Passing context: They can capture and use variables from their surrounding scope.
+
+func main() {
+	// sequence := adder() 
+	// fmt.Println("First call to adder:", sequence()) // Output: 1
+	// fmt.Println("Second call to adder:", sequence()) // Output: 2
+	// fmt.Println("Third call to adder:", sequence())  // Output: 3
+	// fmt.Println("Fourth call to adder:", sequence()) // Output: 4
+	// fmt.Println("Fifth call to adder:", sequence())  // Output: 5
+
+	// sequence2 := adder() 
+	// fmt.Println("First call to adder:", sequence2()) // Output: 1
+	// fmt.Println("Second call to adder:", sequence2()) // Output: 2
+
+	// Subtracter function (Anonymous function)
+	subtracter := func() func(int) int {
+		countdown := 99
+		return func(x int) int {
+			countdown -= x
+			return countdown
+		}
+	}()
+
+	fmt.Println("Subtracting 10:", subtracter(10)) // Output: 89
+	fmt.Println("Subtracting 20:", subtracter(20)) // Output: 69
+	fmt.Println("Subtracting 30:", subtracter(30)) // Output: 39
+}
+// Define a function that return a funmction
+// func adder() func() int {
+// 	// Using the magic of closures to maintain state
+// 	// Only executed once
+// 	i := 0
+// 	fmt.Println("Previous value of i:", i)
+// 	// This inner return function (Is the Closure)
+// 	// This returned function now `remember` or `closses over` the i variable`
+// 	return func() int {
+// 		i++
+// 		fmt.Println("Current value of i:", i)
+// 		return i
+// 	}
+// }
+
+// Practical Use Cases of Closures:
+// 1. Stateful Functions: Closures can maintain state across multiple calls, allowing for functions that remember their previous state.
+// 2. Encapsulating Logic: They can encapsulate logic that requires access to variables from their surrounding scope, making them useful for callbacks and event handlers.
+// 3. Callbacks: Closures can be used to create functions that can be passed as arguments to other functions, allowing for more flexible and reusable code.
+
+// Usefulness of Closures:
+// 1. Encapsulation
+// 2. State Management
+// 3. Flexibility
+// 4. Readability
+
+// Considerations:
+// 1. Performance: Closures can introduce overhead due to the additional state they maintain.
+// 2. Memory Usage: They can lead to increased memory usage if not managed properly, as they keep references to their surrounding scope.
+// 3. Concurency: Care must be taken when using closures in concurrent environments.
+
+// Best Practices:
+// 1. Limited Scope: Keep the scope of variables used in closures as limited as possible to avoid unintended side effects.
+// 2. Avoid Uveruse: Use closures judiciously to avoid complexity and maintain readability.
