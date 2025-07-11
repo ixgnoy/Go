@@ -1,0 +1,86 @@
+package main
+
+import (
+	"fmt"
+	"unicode/utf8"
+)
+
+func main() {
+	message := "Hello\n世界"
+	message2 := "Hello\t世界"
+	message3 := "Hello\rGo" // Move the cursor to teh begining of the current line without moving down to the next line. (Output: Gollo)
+	rawMessage := `Hello\n世界`
+
+	fmt.Println("Original message:", message)
+	fmt.Println("Raw message:", rawMessage)
+	fmt.Println("Original message2:", message2)
+	fmt.Println(message3)
+
+	fmt.Println("Length of message:", len(rawMessage)) // Length in bytes
+
+	// Get the ASCII code
+	fmt.Println("ASCII code of 'H':", message[0])    // 72
+	fmt.Println("ASCII code of '世':", rawMessage[7]) // 228 (first byte of '世' in UTF-8 encoding)
+
+	// Concatenation
+	greeting := "Hello " // Go won't space for us, else if there's a comma, then it will space for us
+	name := "Ray"
+	fmt.Println("Greeting:", greeting+name)
+
+	// String comparison
+	str1 := "Apple"  // A has an ASCII value of 65
+	str2 := "Banana" // B has an ASCII value of 66
+	str3 := "app"    // a has an ASCII value of 97
+	str4 := "apc"
+	fmt.Println("Is str1 < str2?", str1 < str2) // true, because 'A' comes before 'B'
+	fmt.Println("Is str1 < str3?", str1 < str3) // true, because 'A' comes before 'a'
+	fmt.Println("Is str3 == str4?", str3 == str4)
+	fmt.Println("Is str3 < str4?", str3 < str4) // false, p has ASCII value of 112, c has ASCII value of 99
+
+	// String Iteration
+	for _, char := range message {
+		// fmt.Printf("Character at index %d is %c\n", i, char)
+		// Print hexadecimal value of the character
+		fmt.Printf("%x\n", char)
+		// Print the ASCII value of the character
+		fmt.Printf("ASCII: %v\n", char)
+	}
+
+	// Built in fucntion for runes
+	fmt.Println("Rune count in message:", utf8.RuneCountInString(greeting)) // Count of runes (characters) in the string
+
+	// String are immutable in Go, so we cannot change a character in a string directly
+
+	// Runes are integers values that represent Unicode code points.
+	var ch rune = 'a'
+	jch := '界' 
+
+	fmt.Printf("Rune value of 'a': %d\n", ch)       // 97
+	fmt.Printf("Rune value of '界': %d\n", jch)     //
+	// We can print the exact word instead of character
+	// Use the format verb: // %c for character, %d for decimal, %x for hexadecimal
+	fmt.Printf("%c\n", ch)
+	fmt.Printf("%c\n", jch)
+
+	// Try to check type of the string
+	cstr := string(ch)
+	fmt.Println(cstr) // a
+	fmt.Printf("Type of cstr is %T\n", cstr) // %T used to check type of a variable
+
+	const NOHONGO = "日本語"
+	fmt.Println("Japanese string:", NOHONGO)
+
+	jhello := "こんにちは" // Hello in Japanese\
+	// Print in characters
+	for _, runeValue := range jhello {
+		fmt.Printf("%c\n", runeValue) // Print each character in the string
+	}
+
+	// Unicode can use Emojis as well
+	emoji := '😁'
+	// "" only for string, '' only for rune
+	// Default value of this emoji
+	fmt.Printf("%v\n", emoji)
+	fmt.Printf("%c\n", emoji) // Print the emoji as a character
+
+}
