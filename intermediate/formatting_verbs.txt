@@ -1,0 +1,105 @@
+package main
+
+import "fmt"
+
+func main() {
+	// -- General Formatting Verbs --
+	// %v  Prints the value in default format.
+	// %#v Prints the value in Go-syntax format.
+	// %T  Prints the type of the value.
+	// %%  Prints the % sign
+
+	// Before and after the dot, cannot use underscore.
+	// Else, use the underscore jer.
+	// i := 111_95.555
+	// string := "Hello, World!"
+	// fmt.Printf("Value: %v\n", i)          // Default format
+	// fmt.Printf("Go-syntax: %#v\n", i)     // Go-syntax format
+	// fmt.Printf("Type: %T\n", i)          // Type of the value
+	// fmt.Printf("Percent sign: %%\n")      // Prints the % sign
+	// fmt.Printf("%v%%\n", i) // Value with percent sign
+
+	// // Print the string
+	// fmt.Printf("Value: %v\n", string)          // Default format
+	// fmt.Printf("Go-syntax: %#v\n", string)     // Go-syntax format
+	// fmt.Printf("Type: %T\n", string)          // Type of the value
+	
+
+	// -- Integer Formatting Verbs --
+	// %b  Base 2 (binary)
+	// %d  Base 10 (decimal)
+	// %+d Base 10 and always show sign
+	// %o  Base 8 (octal)
+	// %O  Base 8 with leading zero (0o)
+	// %x  Base 16 (hexadecimal, lowercase)
+	// %X  Base 16 (hexadecimal, uppercase)
+	// %#x Base 16 with leading 0x
+	// %4d Pad with spaces (width 4, right justified)
+	// %-4d Pad with spaces (width 4, left justified)
+	// %04d Pad with zeros (width 4, right justified)
+
+	// Examples of integer formatting
+	// int := 255
+	// fmt.Printf("%b\n", int)
+	// fmt.Printf("%d\n", int)
+	// fmt.Printf("%+d\n", int)
+	// fmt.Printf("%o\n", int)
+	// fmt.Printf("%O\n", int)
+	// fmt.Printf("%x\n", int)
+	// fmt.Printf("%X\n", int)
+	// fmt.Printf("%#x\n", int)
+	// fmt.Printf("%4d\n", int)          // Right justified, width 4
+	// fmt.Printf("%-4d\n", int)         // Left justified, width 4
+	// fmt.Printf("%04d\n", int)         // Right justified, width 4, padded with zeros
+
+
+
+	// -- Stirng Formatting Verbs --
+	// %s   Prints the value as plain string
+	// %q   Prints the value as a double-quoted string
+	// %8s  Prints the value as plain string (width 8, right justified)
+	// %-8s Prints the value as plain string (width 8, left justified)
+	// %x   Prints the value as hex dump of byte values.
+	// % x  Prints the value as hex dump of byte values with spaces between bytes
+	// Examples of string formatting
+	// str := "World!"
+	// fmt.Printf("String: %s\n", str)          // Plain string
+	// fmt.Printf("Quoted: %q\n", str)         // Double-quoted string
+	// fmt.Printf("Right justified: %8s\n", str) // Right justified, width 8
+	// fmt.Printf("Left justified: %-8s\n", str)  // Left justified, width
+	// fmt.Printf("Hex dump: %x\n", str)       // Hex dump of byte values
+	// fmt.Printf("Hex dump with spaces: % x\n", str) // Hex dump with spaces between bytes
+
+
+
+	// -- Boolean Formatting Verbs --
+	// %t   Value of the boolean operator is true or false format (same as using %v)
+	// Examples of boolean formatting
+	// t := true
+	// f := false
+	// fmt.Printf("Boolean true: %t\n", t)   // Value of the boolean operator is true
+	// fmt.Printf("Boolean true: %v\n", t)   // Value of the boolean operator is true (default format)
+	// fmt.Printf("Boolean false: %t\n", f)  // Value of the boolean operator is false
+	
+
+
+	// -- Floating Point Formatting Verbs --
+	// Verb Description
+	// %e   Scientific notation with `e` as exponent (e.g., 1.234567e+10)
+	// %f   Decimal notation, no exponent (e.g., 123456789.123456)
+	// %.2f Decimal notation, no exponent, with 2 decimal places (e.g., 123456789.12)
+	// %6.2f Width 6, precision 2, right justified (e.g., "123456789.12")
+	// %6.2e Width 6, precision 2, scientific notation (e.g., "1.23e+10")
+	// %g Exponent as needed, only necessary digits
+	// Examples of floating point formatting
+	flt := 9180000.18
+	fmt.Printf("Scientific notation: %e\n", flt)         // Scientific notation
+	fmt.Printf("Decimal notation: %f\n", flt)          // Decimal notation
+	fmt.Printf("Decimal with 2 places: %.2f\n", flt)   // Decimal with 2 decimal places
+	fmt.Printf("Right justified, width 6, precision 2: %6.2f\n", flt) // Width 6, precision 2
+	fmt.Printf("Right justified, width 6, precision 2, scientific: %6.2e\n", flt) // Width 6, precision 2, scientific notation
+	fmt.Printf("Exponent as needed: %g\n", flt)         // Exponent as needed, only necessary digits
+
+	// Note: 
+	// Minimum total width allowed. The minimum number of total characters(including the '.' decimal).
+}
