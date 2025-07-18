@@ -1,0 +1,95 @@
+package main
+
+import "fmt"
+// Structs are used to group related data together.
+// Recommended: Define the struct at the package level, outside of the main function.
+type Person struct {
+	firstName string
+	lastName  string
+	age       int
+	address Address // Structs can also contain other structs as fields.
+	// Note: Structs can have methods associated with them.
+	PhoneHomeCell PhoneHomeCell // Structs can also contain other structs as fields.
+	// Note: Structs can have methods associated with them.
+}
+
+type Address struct {
+	city string
+	country string
+}
+
+type PhoneHomeCell struct {
+	home string
+	cell string
+}
+
+func main() {
+	// Create an instance of Person struct
+	p1 := Person{
+		firstName: "John",
+		lastName:  "Doe",
+		age:       30,
+		address: Address {
+			city:    "New York",
+			country: "USA",
+		},
+		PhoneHomeCell: PhoneHomeCell{
+			home: "123-456-7890",
+			cell: "987-654-3210",
+		},
+	}
+
+	p2 := Person{
+		firstName: "Jane",
+		age:       67,
+	}
+
+	// Duplicate the identity of person 3 to test the comparison of p2 and p3
+	p3 := Person{
+		firstName: "Jane",
+		age: 67,
+	}
+	// p2.address.city = "New Yorkkkkk"
+	// p2.address.country = "USA"
+	fmt.Println("First name of Person 1:", p1.firstName)
+	fmt.Println("First name of Person 2:", p2.firstName)
+	fmt.Println("Full name of Person 1:", p1.fullName())
+	fmt.Println("Phone Number of Person 1:", p1.PhoneHomeCell.home)
+	fmt.Println("Country of Person 1:", p1.address.country)
+	fmt.Println("City of Person 2:", p2.address.city)
+	// Compare person 1 and person 2
+	fmt.Println("Are Person 1 and Person 2 the same?", p1 == p2)
+	fmt.Println("Are Person 2 and Person 3 the same?", p2 == p3)
+
+	// Anonymous Structs
+	// An anonymous struct is a struct without a name, defined inline.
+	user := struct {
+		username string
+		email string
+	} {
+		username: "ray123",
+		email: "ray@example.org",
+	}
+
+	fmt.Println("Username:", user.username)
+	fmt.Println("Before Increment: ", p1.age)
+	p1.incrementAgeByOne()
+	fmt.Println("After Increment: ", p1.age)
+	fmt.Println("Email:", user.email)
+}
+
+func (p Person) fullName() string {
+	return p.firstName + " " + p.lastName
+}
+
+// IncrementAge increments the age of a Person by 1.
+// Using a pointer receiver allows the method to modify the original struct.
+// If not using a pointer receiver, the method would only modify a copy of the struct.
+func (p *Person) incrementAgeByOne() {
+	p.age++
+}
+
+// A quick revision:
+// Structs are defined using the `type` and `struct` keywords followed by curly braces `{}` containing a list of fields.
+// Using in package level allows the struct to be used across multiple functions in the package.
+// Structs can contain other structs as fields, allowing for nested data structures.
