@@ -1,0 +1,76 @@
+package main
+
+import "fmt"
+
+type Rectangle struct {
+	length float64
+	width  float64
+}
+
+type Shape struct {
+	Rectangle // Embedding Rectangle struct
+	// When to use embedding?
+	// 1. To create a new type that has all the fields and methods of another type.
+	// 2. To achieve code reuse and composition.
+	// 3. To create a more complex type that can be treated as a simpler type
+}
+
+// Method with value receiver
+func (r Rectangle) Area() float64 {
+	return r.length * r.width
+}
+
+// Method with pointer receiver
+// Why to use pointer receiver?
+// 1. To modify the original struct value inside the method.
+// 2. For performance, to avoid copying a large struct every time the method is called.
+func (r *Rectangle) Scale(factor float64) {
+	r.length *= factor // r.length = r.length * factor
+	r.width *= factor  // r.width = r.width * factor
+}
+func main() {
+	rect := Rectangle{length: 10, width: 8}
+	area := rect.Area()
+	fmt.Println("Area of rectangle with length of 10 and width of 8 is", area)
+	rect.Scale(2) // Scale the rectangle by a factor of 2
+	area = rect.Area()
+	fmt.Println("Area of rectangle after scaling is", area)
+
+	//Initializing number to a user-defined type
+	num1 := MyInt(5) // MyInt is a user-defined type based on int
+	num2 := MyInt(-3) // Another user-defined type instance
+	fmt.Println("Is num1 positive?", num1.IsPositive()) // Should print true
+	fmt.Println("Is num2 positive?", num2.IsPositive()) // Should print false
+	fmt.Println("Welcome message for MyInt:", num1.WelcomeMessage()) // Call the static method
+
+	// Using the embedded struct
+	shape := Shape{Rectangle: Rectangle{length: 10, width: 9}}
+	// Accessing the Area method from the embedded Rectangle struct
+	// Acess by parent struct
+	fmt.Println("Area of embedded rectangle in shape:", shape.Area()) // Should print 90
+	// Access by child struct
+	fmt.Println("Area of embedded rectangle in shape:", shape.Rectangle.Area())
+	// The result will be the same as above
+	// because the Area method is inherited from the embedded Rectangle struct.
+}
+
+type MyInt int
+//Method with a User-defined type
+func (m MyInt) IsPositive() bool {
+	return m > 0
+}
+// We can use it without instances
+// Because we are not accessing any values
+func (MyInt) WelcomeMessage() string {
+	return "Welcome to MyInt type!"
+}
+
+// Notes:
+// Value Receiver: Like mailing someone a full-size replica of a car.
+// Pointer Receiver: Like giving someone the keys and address to the original car.
+
+
+// Differecnes between when Modifying the  Original Value
+// For value reciever,  `func (s MyStruct)`, the method gets a copy of the struct. Any changes you make are on the copy and are lost when the method ends.
+// For Pointer Receiver, `func (s *MyStruct)`, the method gets a pointer to the original struc. This
+// allows you to directly modify the original value.
