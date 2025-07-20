@@ -1,0 +1,115 @@
+package main
+
+import (
+	"fmt"
+	"math"
+)
+
+// Making an interface for Geometry
+// Notes:
+// Uppercase name of interface: Geometry -> It can be exported (Public)
+// Meaning the Geometry type can be seen and used by other  packages that import the pacakge where it is defined.
+// Lowercase name of interface: geometry -> It is unexported (Private)
+// Meaning the geometry type can only be used within the package where it is defined.
+type geometry interface {
+	area() float64
+	perimeter() float64
+}
+
+// Rectangle struct
+type rectangle struct {
+	width  float64
+	height float64
+}
+// Making another rectangle struct
+type rectangle2 struct {
+	width, height float64
+}
+
+// Circle struct
+type circle struct {
+	radius float64
+}
+
+// Area method for rectangle
+func (r rectangle) area() float64 {
+	return r.width * r.height
+}
+
+// Perimeter method for rectangle
+func (r rectangle) perimeter() float64 {
+	return 2 * (r.width + r.height)
+}
+
+// Area method for circle
+func (c circle) area() float64 {
+	return math.Pi * c.radius * c.radius
+}
+
+// Perimeter method for circle
+func (c circle) perimeter() float64 {
+	return 2 * math.Pi * c.radius
+}
+
+func (r2 rectangle2) area() float64 {
+	return r2.width * r2.height
+}
+
+func (r2 rectangle2) perimeter() float64 {
+	return 2 * (r2.width + r2.height)
+}
+
+
+func measure(g geometry) {
+	// Print the area and perimeter of the geometry
+	fmt.Println("Geometry Type:", g)
+	fmt.Println("Area:", g.area())
+	fmt.Println("Perimeter:", g.perimeter())
+}
+
+func main() {
+	// Create an instance of rectangle and circle
+	r := rectangle{width: 8.0, height: 5.0}
+	c := circle{radius: 3.0}
+	// Create an instance of rectangle2
+	r2 := rectangle2{width: 4.0, height: 6.0}
+
+	measure(r) // Measure rectangle
+	measure(c) // Measure circle
+	measure(r2)
+
+	printType(42)          // Print type of int
+	printType("Hello")     // Print type of string
+	printType(true)        // Print type of bool
+	printType(3.14)       // Print type of float64
+	// Print type of an unknown type
+	printType([]int{1, 2, 3}) // Print type of slice
+
+	myPrinter("Hello", "World", 42, 3.14)
+}// Note: The measure function takes an interface type geometry, which can accept any type that implements the area and perimeter methods.
+
+// Function to print values of any type
+func printType(i interface{}) {
+	switch i.(type) {
+	// i.(type) is a special syntax in Go that allows you to perform a type assertion on the interface i.
+	// Purpose: To let you write different code paths for different possible types that an interface variable might hold.
+	case int:
+		fmt.Println("Type: Int")
+	case string:
+		fmt.Println("Type: String")
+	case bool:
+		fmt.Println("Type: Bool")
+	case float64:
+		fmt.Println("Type: Float64")
+	default:
+		fmt.Println("Type: Unknown")
+	}
+}
+
+func myPrinter(i ...interface{}) {
+	// ...interface{} is a variadic parameter that allows passing a variable number of arguments of any type like int, string, bool, struct.
+	for _, v := range i {
+		// Print each value in the interface slice
+		fmt.Println(v)
+	}
+}
