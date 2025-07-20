@@ -1,0 +1,55 @@
+package main
+
+import "fmt"
+
+type Person struct {
+	name string
+	age  int
+}
+
+type Employee struct {
+	employeeInfo Person // Embedding Person struct Named field
+	Person // Anonymous field
+	empId  string
+	salary float64
+}
+
+func (p Person) introduce() {
+	fmt.Printf("Hi, my name is %s and I am %d years old.\n", p.name, p.age)
+	
+}
+// Overwrite method
+func (e Employee) introduce() {
+	fmt.Printf("Hi, my name is %s, I am %d years old, my employee ID is %s and my salary is %.2f.\n", e.name, e.age, e.empId, e.salary)
+}
+
+func main() {
+	// Struct embedding example
+	// Make an instance of Employee
+	emp := Employee{
+		Person: Person{
+			name: "Ray Wong",
+			age:  22,
+		},
+		empId:  "E123",
+		salary: 50000,
+	}
+
+	// Accessing embedded fields
+	fmt.Println("Employee Name:", emp.name) // Accessing embedded Person's field (emp.Person.name)
+	fmt.Println("Employee Age:", emp.age)   // Accessing embedded Person's field (emp.Person.age)
+	fmt.Println("Employee ID:", emp.empId)
+	fmt.Println("Employee Salary:", emp.salary)
+
+	// Calling embedded method
+	emp.introduce() // Calls Person's method (emp.Person.introduce)
+}
+
+// Notes:
+// When to use it:
+// 1. To add fields or Behaviors.
+// When you want to create a more specialized version of a base type (like a Manager is a specialized Employee)
+// 2. For Composition
+// When you want to build a new type by combining the functionality of several smaller types. For example, a `Car` struct could embed an Enginer struct and a Transmission struct.
+// 3. To avoid Writing boilerplate code.
+// It prevents you from having to write forwarding methods or re-declare fields that are common across multiple types.
